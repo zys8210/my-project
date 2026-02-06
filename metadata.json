@@ -1,0 +1,5 @@
+{
+  "name": "RFID+温度传感器监控平台",
+  "description": "基于RFID技术与温度传感器的资产/物料实时温度监控管理平台，支持设备管理、标签管理、实时监控、告警闭环及历史追溯。",
+  "requestFramePermissions": []
+}

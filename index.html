@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID+温度传感器智慧监控指挥中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              tech: {
+                bg: '#020617',
+                card: 'rgba(15, 23, 42, 0.7)',
+                accent: '#22d3ee',
+                glow: '#818cf8',
+                danger: '#f43f5e',
+                warning: '#fbbf24',
+                success: '#10b981'
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'scan': 'scanLine 8s linear infinite',
+              'glow-rotate': 'glowRotate 10s linear infinite'
+            },
+            keyframes: {
+              scanLine: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(1000%)' }
+              },
+              glowRotate: {
+                '0%': { filter: 'hue-rotate(0deg)' },
+                '100%': { filter: 'hue-rotate(360deg)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+        
+        body { 
+          font-family: 'Inter', sans-serif; 
+          background-color: #020617;
+          color: #f8fafc;
+          overflow-x: hidden;
+          font-size: 1.125rem; /* 约18px，作为全局基准字号 */
+        }
+
+        .font-tech { font-family: 'Orbitron', sans-serif; }
+
+        /* 科技感背景网格 */
+        .tech-grid {
+          background-image: 
+            linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+          background-size: 30px 30px;
+        }
+
+        /* 扫描线效果 */
+        .scan-line {
+          position: fixed;
+          top: 0; left: 0; right: 0; height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+          z-index: 100;
+          pointer-events: none;
+        }
+
+        .glass-card {
+          background: rgba(15, 23, 42, 0.6);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(34, 211, 238, 0.2);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover {
+          border-color: rgba(34, 211, 238, 0.5);
+          box-shadow: 0 0 15px rgba(34, 211, 238, 0.1);
+        }
+
+        .glow-text {
+          text-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { 
+          background: rgba(34, 211, 238, 0.3); 
+          border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.5); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="tech-grid min-h-screen">
+    <div class="scan-line animate-scan"></div>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
